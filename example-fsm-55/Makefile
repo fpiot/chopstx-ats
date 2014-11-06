@@ -10,6 +10,7 @@ CSRC = sys.c hacker-emblem.c
 CROSS = arm-none-eabi-
 CC   = $(CROSS)gcc
 LD   = $(CROSS)gcc
+GDB  = $(CROSS)gdb
 OBJCOPY   = $(CROSS)objcopy
 
 MCU   = cortex-m0 # -save-temps
@@ -23,6 +24,10 @@ include ../rules.mk
 
 board.h:
 	@echo Please make a symbolic link \'board.h\' to a file in ../board;
+	@exit 1
+
+openocd.cfg:
+	@echo Please make a symbolic link \'openocd.cfg\' to a file in ../board;
 	@exit 1
 
 sys.c: board.h

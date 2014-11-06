@@ -56,6 +56,9 @@ $(OBJS) : $(BUILDDIR)/%.o : %.c Makefile
 %.hex: %.elf $(LDSCRIPT)
 	$(OBJCOPY) -O ihex $< $@
 
+write: all openocd.cfg
+	openocd -f ./openocd.cfg -c "program $(BUILDDIR)/$(PROJECT).elf"
+
 clean:
 	-rm -f -r .dep $(BUILDDIR)
 
