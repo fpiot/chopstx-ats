@@ -4,7 +4,7 @@ PROJECT = hacker-emblem
 
 CHOPSTX = ..
 LDSCRIPT= hacker-emblem.ld
-CSRC = sys.c hacker-emblem.c
+CSRC = sys.c DATS/hacker-emblem_dats.c
 
 ###################################
 CROSS = arm-none-eabi-
@@ -19,6 +19,7 @@ OPT   = -O3 -Os -g
 LIBS  =
 
 ####################
+include ../metasepi/pre-rules.mk
 include ../rules.mk
 
 board.h:

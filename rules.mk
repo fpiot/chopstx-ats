@@ -61,6 +61,7 @@ write: all openocd.cfg
 
 clean:
 	-rm -f -r .dep $(BUILDDIR)
+	-rm -f DATS/*.c
 
 # Include dependency files.
 -include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)

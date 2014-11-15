@@ -1,3 +1,14 @@
+#define ATS_DYNLOADFLAG 0
+(* ****** ****** *)
+#include "config.hats"
+#include "share/atspre_define.hats"
+#include "{$CHOPSTX}/staloadall.hats"
+(* ****** ****** *)
+//staload UN = "prelude/SATS/unsafe.sats"
+(* ****** ****** *)
+
+%{
+// Copy from chopstx-ats/example-fsm-55/hiroshi-ayumi.c
 #include <stdint.h>
 #include <stdlib.h>
 #include <chopstx.h>
@@ -34,7 +45,7 @@ struct GPIO {
 
 static struct GPIO *const GPIO_LED = ((struct GPIO *const) GPIO_LED_BASE);
 static struct GPIO *const GPIO_OTHER = ((struct GPIO *const) GPIO_OTHER_BASE);
-
+
 static chopstx_mutex_t mtx;
 static chopstx_cond_t cnd0;
 
@@ -172,13 +183,10 @@ static uint32_t image1[] = {
   DATA55 (0x00,0x00,0x00,0x00,0x00),
 };
 
-int
-main (int argc, const char *argv[])
+void
+c_main (void)
 {
   uint8_t state = 0;
-
-  (void)argc;
-  (void)argv;
 
   chopstx_mutex_init (&mtx);
   chopstx_cond_init (&cnd0);
@@ -212,6 +220,10 @@ main (int argc, const char *argv[])
 	    wait_for (200*1000);
 	  }
     }
-
-  return 0;
 }
+%}
+
+extern fun c_main (): void = "mac#"
+
+extern fun main (): void = "mac#"
+implement main () = c_main ()
