@@ -1,4 +1,4 @@
-# ATS programing using Chopstx [![Build Status](https://travis-ci.org/fpiot/chopstx-ats.svg?branch=fsm55-ats)](https://travis-ci.org/fpiot/chopstx-ats)
+# ATS programing on [Chopstx](http://git.gniibe.org/gitweb/?p=chopstx/chopstx.git;a=summary) [![Build Status](https://travis-ci.org/fpiot/chopstx-ats.svg?branch=fsm55-ats)](https://travis-ci.org/fpiot/chopstx-ats)
 
 ## Hardware specification
 
@@ -12,7 +12,7 @@
 * External port K2: PB1 (GPIO/TIMER/ADC), GND, VDD
 * [PCB design](http://git.gniibe.org/gitweb/?p=fsm-55.git;a=summary) ([kicad](http://www.kicad-pcb.org))
 
-You can buy it at [Seeed](http://www.seeedstudio.com/depot/FSM55-LED-Matrix-Display-p-2121.html).
+You can [buy it at Seeedstudio](http://www.seeedstudio.com/depot/FSM55-LED-Matrix-Display-p-2121.html), or [make your own FSM-55 board on PCB](metasepi/doc/MakePCB.md).
 
 ## Setup build environment
 
@@ -30,11 +30,21 @@ T.B.D.
 
 ## How to build
 
-T.B.D.
+```
+$ git clone https://github.com/fpiot/chopstx-ats.git
+$ cd chopstx-ats/example-fsm-55-ats
+$ make
+```
 
 ## How to write firmware
 
-T.B.D.
+Connect FSM-55 board and debugger.
+See [following](#how-to-connect-fsm-55-board-and-debugger) for detail.
+
+```
+$ cd chopstx-ats/example-fsm-55-ats
+$ sudo make write
+```
 
 ## How to connect FSM-55 board and debugger
 
