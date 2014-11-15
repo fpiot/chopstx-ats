@@ -1,1 +1,1 @@
-debian-logo.c
+hiroshi-ayumi.c
