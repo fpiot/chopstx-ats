@@ -12,9 +12,12 @@ before_install:
   - ./ATS-Postiats/travis-ci/setup.sh 0.2.11
   # Build ATS2
   - export PATSHOME=${HOME}/ATS-Postiats
-  - export PATSHOMERELOC=${PATSHOME}
   - export PATH=${PATH}:${PATSHOME}/bin
   - cd ${PATSHOME} && make -f codegen/Makefile_atslib && make -f Makefile_devl src_depend && make -f Makefile_devl all
+  # Setup ATS2 contrib
+  - cd ${HOME}
+  - git clone https://github.com/githwxi/ATS-Postiats-contrib.git
+  - export PATSHOMERELOC=${HOME}/ATS-Postiats-contrib
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - make
