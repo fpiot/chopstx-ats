@@ -1,6 +1,6 @@
 # ATS programing using Chopstx [![Build Status](https://travis-ci.org/fpiot/chopstx-ats.svg?branch=fsm55-ats)](https://travis-ci.org/fpiot/chopstx-ats)
 
-## Which board can ATS application using Chopstx run on?
+## Hardware specification
 
 ## Setup build environment
 
@@ -27,6 +27,8 @@ T.B.D.
 ## How to connect FSM-55 board and debugger
 
 ### [STMicroelectronics - ST-LINK/V2](http://www.st.com/web/en/catalog/tools/PF251168)
+
+![](metasepi/draw/connect-stlink-ST.png)
 
 ### [BAITE - ST-LINK V2](http://www.aliexpress.com/item/Free-Shipping-1SET-ST-Link-st-link-V2-for-STM8S-STM8L-STM32-Cortex-M0-Cortex-M3/1619197946.html)
 
