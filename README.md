@@ -7,6 +7,7 @@ See [original README](README).
 ## Hardware specification
 
 ![](metasepi/draw/FSM-55-pinout.png)
+![](metasepi/img/FSM-55-kicad-sch.png)
 
 * MCU: [STM32F030F4P6](http://www.st.com/web/catalog/mmc/FM141/SC1169/SS1574/LN1826/PF258968)
 * Flash ROM: 16kB
