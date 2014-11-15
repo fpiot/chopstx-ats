@@ -2,6 +2,18 @@
 
 ## Hardware specification
 
+[![](metasepi/img/FSM-55.jpg)](http://www.seeedstudio.com/depot/FSM55-LED-Matrix-Display-p-2121.html)
+
+* MCU: [STM32F030F4P6](http://www.st.com/web/catalog/mmc/FM141/SC1169/SS1574/LN1826/PF258968)
+* Flash ROM: 16kB
+* SRAM: 4kB
+* Battery: CR2032
+* External port K1: PF0 (GPIO, connected to USER button), PF1 (GPIO), GND
+* External port K2: PB1 (GPIO/TIMER/ADC), GND, VDD
+* [PCB design](http://git.gniibe.org/gitweb/?p=fsm-55.git;a=summary) ([kicad](http://www.kicad-pcb.org))
+
+You can buy it at [Seeed](http://www.seeedstudio.com/depot/FSM55-LED-Matrix-Display-p-2121.html).
+
 ## Setup build environment
 
 ### [Debian GNU/Linux](https://www.debian.org/)
