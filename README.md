@@ -2,7 +2,7 @@
 
 ## Hardware specification
 
-[![](metasepi/img/FSM-55.jpg)](http://www.seeedstudio.com/depot/FSM55-LED-Matrix-Display-p-2121.html)
+![](metasepi/draw/FSM-55-pinout.png)
 
 * MCU: [STM32F030F4P6](http://www.st.com/web/catalog/mmc/FM141/SC1169/SS1574/LN1826/PF258968)
 * Flash ROM: 16kB
