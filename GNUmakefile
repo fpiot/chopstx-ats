@@ -1,4 +1,4 @@
-SUBDIRS := example-fsm-55 # example-fsm-55-ats
+SUBDIRS := example-fsm-55 example-fsm-55-ats
 ODGS := $(wildcard metasepi/draw/*.odg)
 PNGS := $(patsubst %.odg,%.png,${ODGS})
 
