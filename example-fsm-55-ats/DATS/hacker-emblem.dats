@@ -4,17 +4,11 @@
 #include "share/atspre_define.hats"
 #include "{$CHOPSTX}/staloadall.hats"
 (* ****** ****** *)
-//staload UN = "prelude/SATS/unsafe.sats"
+staload UN = "prelude/SATS/unsafe.sats"
 (* ****** ****** *)
 
 %{
 // Copy from chopstx-ats/example-fsm-55/hiroshi-ayumi.c
-#include <stdint.h>
-#include <stdlib.h>
-#include <chopstx.h>
-
-#include "board.h"
-
 #define PERIPH_BASE	0x40000000
 #define APBPERIPH_BASE   PERIPH_BASE
 #define APB2PERIPH_BASE	(PERIPH_BASE + 0x10000)
@@ -226,4 +220,6 @@ c_main (void)
 extern fun c_main (): void = "mac#"
 
 extern fun main (): void = "mac#"
-implement main () = c_main ()
+implement main () = {
+  val () = c_main ()
+}

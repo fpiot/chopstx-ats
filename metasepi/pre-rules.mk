@@ -12,7 +12,7 @@ ATSCFLAGS      += -D_ATS_CCOMP_PRELUDE_NONE
 ATSCFLAGS      += -D_ATS_CCOMP_PRELUDE_USER=\"kernelats/pats_ccomp.h\"
 ATSCFLAGS      += -D_ATS_CCOMP_EXCEPTION_NONE
 ATSCFLAGS      += -D_ATSTYPE_VAR_SIZE=128
-ATSCFLAGS      += -I$(PATSHOME) -I$(PATSHOME)/ccomp/runtime -I${PATSHOMERELOC}/contrib
+ATSCFLAGS      += -I$(PATSHOME) -I$(PATSHOME)/ccomp/runtime -I${PATSHOMERELOC}/contrib -I${CHOPSTX}/metasepi
 
 OPT            += ${ATSCFLAGS}
 

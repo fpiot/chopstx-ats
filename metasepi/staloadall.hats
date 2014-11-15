@@ -31,7 +31,7 @@ staload _(*UN*) = "prelude/DATS/unsafe.dats"
 //
 (* ****** ****** *)
 
-//staload "./SATS/Chopstx.sats" // xxx
+staload "./SATS/Chopstx.sats"
 
 (* ****** ****** *)
 
