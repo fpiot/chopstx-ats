@@ -71,7 +71,7 @@ Please see ["metasepi/COPYING"](metasepi/COPYING).
 
 ### The others
 
-Copyright (c) 2013 [Niibe Yutaka](http://www.gniibe.org/).
+Copyright (c) 2013 [Flying Stone Technology](http://www.gniibe.org/).
 
 It is distributed under GNU General Public Licence version 3 or later (GPLv3+),
 with additional permission.
