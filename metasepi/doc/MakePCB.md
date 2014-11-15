@@ -21,10 +21,10 @@ Order stencil at [Laser Cut PCB Stencil service without frame [SPS30121S] - $16.
 * [Resistor 47Ω](http://www.mouser.jp/ProductDetail/Vishay-Dale/CRCW080547R0JNEA/?Vishay-Dale%2fCRCW080547R0JNEA%2f&qs=sGAEpiMZZMvdGkrng054txEw7b1YnvGuFYxJnz1RVXQ%3d) - $0.08 x 5
 * [Capacitor 4.7uF](http://www.mouser.jp/ProductDetail/Vishay-Vitramon/VJ0805V475ZXQTW1BC/?qs=sGAEpiMZZMuMW9TJLBQkXmt5SQVoUrSJNAU8zZEgNqU%3d) - $0.06
 * [Capacitor 100nF (0.1uF)](http://www.mouser.jp/ProductDetail/Vishay-Vitramon/VJ0603Y104JXQCW1BC/?Vishay-Vitramon%2fVJ0603Y104JXQCW1BC%2f&qs=sGAEpiMZZMuMW9TJLBQkXvlFzI1aRBtdrU1srwol6I4%3d) - $0.06 x 4
-* Pin header
-* Solder paste
-
-T.B.D.
+* [Pin header 2.54mm 1x5](http://www.mouser.jp/ProductDetail/Amphenol-Commercial-Products/G800MR303018E0/?qs=sGAEpiMZZMs%252bGHln7q6pm41Noaw7hCiyu9cuXCdBwDY%3d) - $0.21
+* Solder paste - xxx
+* Electric hot plate ([YAMAZEN HG-T1301](http://kakaku.com/item/K0000643271/))
+* Tweezers
 
 ## 5. Assembly ([Reflow soldering](http://en.wikipedia.org/wiki/Reflow_soldering))
 
