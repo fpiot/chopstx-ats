@@ -1,5 +1,9 @@
 # ATS programing on [Chopstx](http://git.gniibe.org/gitweb/?p=chopstx/chopstx.git;a=summary) [![Build Status](https://travis-ci.org/fpiot/chopstx-ats.svg?branch=fsm55-ats)](https://travis-ci.org/fpiot/chopstx-ats)
 
+## What is Chopstx
+
+See [original README](README).
+
 ## Hardware specification
 
 ![](metasepi/draw/FSM-55-pinout.png)
@@ -55,3 +59,20 @@ $ sudo make write
 ### [BAITE - ST-LINK V2](http://www.aliexpress.com/item/Free-Shipping-1SET-ST-Link-st-link-V2-for-STM8S-STM8L-STM32-Cortex-M0-Cortex-M3/1619197946.html)
 
 ![](metasepi/draw/connect-stlink-BAITE.png)
+
+## License
+
+### Under "metasepi" directory
+
+Copyright (c) 2014 [Metasepi team](http://www.metasepi.org/).
+
+It is distributed under GNU General Public Licence version 2 or later (GPLv2+).
+Please see ["metasepi/COPYING"](metasepi/COPYING).
+
+### The others
+
+Copyright (c) 2013 [Niibe Yutaka](http://www.gniibe.org/).
+
+It is distributed under GNU General Public Licence version 3 or later (GPLv3+),
+with additional permission.
+Please see ["COPYING"](COPYING) and ["EXCEPTION"](EXCEPTION).
