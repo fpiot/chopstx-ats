@@ -1,8 +1,8 @@
-# ATS programing on [Chopstx](http://git.gniibe.org/gitweb/?p=chopstx/chopstx.git;a=summary) [![Build Status](https://travis-ci.org/fpiot/chopstx-ats.svg?branch=fsm55-ats)](https://travis-ci.org/fpiot/chopstx-ats)
+# ATS programing on Chopstx [![Build Status](https://travis-ci.org/fpiot/chopstx-ats.svg?branch=fsm55-ats)](https://travis-ci.org/fpiot/chopstx-ats)
 
 ## What is Chopstx
 
-See [original README](README).
+See [original README](README) and [original git repository](http://git.gniibe.org/gitweb/?p=chopstx/chopstx.git;a=summary).
 
 ## Hardware specification
 
