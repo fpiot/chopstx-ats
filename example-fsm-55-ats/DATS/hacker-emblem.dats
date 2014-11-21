@@ -40,8 +40,8 @@ struct GPIO {
 static struct GPIO *const GPIO_LED = ((struct GPIO *const) GPIO_LED_BASE);
 static struct GPIO *const GPIO_OTHER = ((struct GPIO *const) GPIO_OTHER_BASE);
 
-static chopstx_mutex_t mtx;
-static chopstx_cond_t cnd0;
+chopstx_mutex_t mtx;
+chopstx_cond_t cnd0;
 
 static uint8_t
 user_button (void)
@@ -111,12 +111,7 @@ led (void *arg)
   return NULL;
 }
 
-#define PRIO_LED 3
-
 extern uint8_t __process1_stack_base__, __process1_stack_size__;
-
-const uint32_t __stackaddr_led = (uint32_t)&__process1_stack_base__;
-const size_t __stacksize_led = (size_t)&__process1_stack_size__;
 
 #define DATA55(x0,x1,x2,x3,x4) (x0<<20)|(x1<<15)|(x2<<10)|(x3<< 5)|(x4<< 0)
 #define SIZE55(img) (sizeof (img) / sizeof (uint32_t))
@@ -182,17 +177,6 @@ c_main (void)
 {
   uint8_t state = 0;
 
-  chopstx_mutex_init (&mtx);
-  chopstx_cond_init (&cnd0);
-
-  chopstx_create (PRIO_LED, __stackaddr_led, __stacksize_led, led, NULL);
-
-  chopstx_usec_wait (200*1000);
-
-  chopstx_mutex_lock (&mtx);
-  chopstx_cond_signal (&cnd0);
-  chopstx_mutex_unlock (&mtx);
-
   while (1)
     {
       unsigned int i;
@@ -217,9 +201,27 @@ c_main (void)
 }
 %}
 
+extern fun led (ptr): ptr = "mac#"
 extern fun c_main (): void = "mac#"
+
+
+#define PRIO_LED 3U
+macdef __stackaddr_led = $extval(uint32, "&__process1_stack_base__")
+macdef __stacksize_led = $extval(size_t, "&__process1_stack_size__")
+
+macdef mtx_ptr = $extval(chopstx_mutex_tp, "&mtx")
+macdef cnd0_ptr = $extval(chopstx_cond_tp, "&cnd0")
+
 
 extern fun main (): void = "mac#"
 implement main () = {
+  val () = (chopstx_mutex_init (mtx_ptr); chopstx_cond_init (cnd0_ptr))
+  val _  = chopstx_create (PRIO_LED, __stackaddr_led, __stacksize_led, led, the_null_ptr)
+  val () = chopstx_usec_wait (200U * 1000U)
+
+  val () = chopstx_mutex_lock (mtx_ptr)
+  val () = chopstx_cond_signal (cnd0_ptr)
+  val () = chopstx_mutex_unlock (mtx_ptr)
+
   val () = c_main ()
 }
