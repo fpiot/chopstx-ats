@@ -63,12 +63,6 @@ set_led_display (uint32_t data)
 
 
 static void
-wait_for (uint32_t usec)
-{
-  chopstx_usec_wait (usec);
-}
-
-static void
 led_prepare_row (uint8_t col)
 {
   uint16_t data = 0x1f;
@@ -104,7 +98,7 @@ led (void *arg)
 	{
 	  led_prepare_row (i);
 	  led_enable_column (i);
-	  wait_for (1000);
+	  chopstx_usec_wait (1000);
 	}
     }
 
@@ -172,13 +166,9 @@ static uint32_t image1[] = {
   DATA55 (0x00,0x00,0x00,0x00,0x00),
 };
 
-void
-c_main (void)
+uint32_t
+c_main (uint32_t state)
 {
-  uint8_t state = 0;
-
-  while (1)
-    {
       unsigned int i;
 
       if (state)
@@ -187,7 +177,7 @@ c_main (void)
 	    if (user_button ())
 	      state = 0;
 	    set_led_display (image0[i]);
-	    wait_for (200*1000);
+	    chopstx_usec_wait (200*1000);
 	  }
       else
 	for (i = 0; i < SIZE55 (image1); i++)
@@ -195,14 +185,15 @@ c_main (void)
 	    if (user_button ())
 	      state = 1;
 	    set_led_display (image1[i]);
-	    wait_for (200*1000);
+	    chopstx_usec_wait (200*1000);
 	  }
-    }
+
+      return state;
 }
 %}
 
 extern fun led (ptr): ptr = "mac#"
-extern fun c_main (): void = "mac#"
+extern fun c_main (state: uint): uint = "mac#"
 
 
 #define PRIO_LED 3U
@@ -212,9 +203,12 @@ macdef __stacksize_led = $extval(size_t, "&__process1_stack_size__")
 macdef mtx_ptr = $extval(chopstx_mutex_tp, "&mtx")
 macdef cnd0_ptr = $extval(chopstx_cond_tp, "&cnd0")
 
-
 extern fun main (): void = "mac#"
 implement main () = {
+  fun forever (state: uint): void = {
+    val nstate = c_main (state)
+    val () = forever (nstate)
+  }
   val () = (chopstx_mutex_init (mtx_ptr); chopstx_cond_init (cnd0_ptr))
   val _  = chopstx_create (PRIO_LED, __stackaddr_led, __stacksize_led, led, the_null_ptr)
   val () = chopstx_usec_wait (200U * 1000U)
@@ -223,5 +217,5 @@ implement main () = {
   val () = chopstx_cond_signal (cnd0_ptr)
   val () = chopstx_mutex_unlock (mtx_ptr)
 
-  val () = c_main ()
+  val () = forever (0U)
 }
