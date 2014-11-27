@@ -2,7 +2,37 @@
 
 ## 1. Make gerber file on [kicad](http://www.kicad-pcb.org/)
 
-T.B.D.
+Download kicad files.
+
+```
+$ git clone git://git.gniibe.org/fsm-55.git
+```
+
+Open "fsm-55/fsm-55.pro" file with kicad application. And make gerber file on kicad. Please see following links for the detail.
+
+* [Kicad Tutorial: Gerber file generation | Wayne and Layne](https://www.wayneandlayne.com/blog/2013/02/27/kicad-tutorial-gerber-file-generation/)
+* [ガーバーデータ出力方法「KiCad」 | プリント基板ネット通販P板.com](http://www.p-ban.com/gerber/kicad.html)
+
+Then you can get a zip file such like following that is needed to order PCB and stencil.
+
+```
+$ unzip -l fsm-55-gerb.zip
+Archive:  fsm-55-gerb.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+     9815  2014-10-08 16:32   fsm-55-gerb/fsm-55-B_Mask.gbs
+     3055  2014-10-08 16:32   fsm-55-gerb/fsm-55-B_SilkS.gbo
+    20840  2014-10-08 16:32   fsm-55-gerb/fsm-55-Back.gbl
+      413  2014-10-08 16:32   fsm-55-gerb/fsm-55-Edge_Cuts.gbr
+    20613  2014-10-08 16:32   fsm-55-gerb/fsm-55-F_Mask.gts
+    75053  2014-10-08 16:32   fsm-55-gerb/fsm-55-F_SilkS.gto
+    44306  2014-10-08 16:32   fsm-55-gerb/fsm-55-Front.gtl
+      364  2014-10-08 16:35   fsm-55-gerb/fsm-55-drl.rpt
+    22772  2014-10-08 16:35   fsm-55-gerb/fsm-55-drl_map.pho
+      652  2014-10-08 16:35   fsm-55-gerb/fsm-55.drl
+---------                     -------
+   197883                     10 files
+```
 
 ## 2. Order PCB
 
@@ -22,12 +52,14 @@ Order stencil at [Laser Cut PCB Stencil service without frame [SPS30121S] - $16.
 * [Capacitor 4.7uF](http://www.mouser.jp/ProductDetail/Vishay-Vitramon/VJ0805V475ZXQTW1BC/?qs=sGAEpiMZZMuMW9TJLBQkXmt5SQVoUrSJNAU8zZEgNqU%3d) - $0.06
 * [Capacitor 100nF (0.1uF)](http://www.mouser.jp/ProductDetail/Vishay-Vitramon/VJ0603Y104JXQCW1BC/?Vishay-Vitramon%2fVJ0603Y104JXQCW1BC%2f&qs=sGAEpiMZZMuMW9TJLBQkXvlFzI1aRBtdrU1srwol6I4%3d) - $0.06 x 4
 * [Pin header 2.54mm 1x5](http://www.mouser.jp/ProductDetail/Amphenol-Commercial-Products/G800MR303018E0/?qs=sGAEpiMZZMs%252bGHln7q6pm41Noaw7hCiyu9cuXCdBwDY%3d) - $0.21
-* [Solder paste](http://www.aliexpress.com/wholesale?SearchText=solder+paste+xg-50) - $2.49
+* [Solder paste](http://www.aliexpress.com/wholesale?SearchText=solder+paste+xg-50) - $4.27
 
 ## 5. Tools needed for assembly
 
+* Absolute ethanol
 * Electric hot plate ([YAMAZEN HG-T1301](http://kakaku.com/item/K0000643271/))
 * Magnifier
+* Scotch tape
 * Squeegee
 * Tweezers
 
