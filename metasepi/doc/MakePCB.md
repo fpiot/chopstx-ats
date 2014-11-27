@@ -68,4 +68,11 @@ Order stencil at [Laser Cut PCB Stencil service without frame [SPS30121S] - $16.
 
 [![Let's reflow](http://img.youtube.com/vi/prjB_myCwSY/2.jpg)](http://www.youtube.com/watch?v=prjB_myCwSY)
 
-T.B.D.
+![](img/reflowprofile.png)
+
+xxx T.B.D. xxx
+
+Please see following links for the detail.
+
+* [電子工作勉強中: 自宅リフローに挑戦しました：失敗事例集と要点](http://benkyo-chu.blogspot.jp/2014/05/12.html)
+* [ホットプレートを使ってリフローはんだづけにチャレンジ！ - Togetterまとめ](http://togetter.com/li/542601)
