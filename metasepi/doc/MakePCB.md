@@ -59,6 +59,7 @@ Order stencil at [Laser Cut PCB Stencil service without frame [SPS30121S] - $16.
 * Absolute ethanol
 * Electric hot plate ([YAMAZEN HG-T1301](http://kakaku.com/item/K0000643271/))
 * Magnifier
+* ST-LINK V2 ([BAITE brand - $6.90](http://www.aliexpress.com/item/Free-Shipping-1SET-ST-Link-st-link-V2-for-STM8S-STM8L-STM32-Cortex-M0-Cortex-M3/1619197946.html))
 * Scotch tape
 * Squeegee
 * Tweezers
