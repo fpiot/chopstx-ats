@@ -22,7 +22,7 @@ Order stencil at [Laser Cut PCB Stencil service without frame [SPS30121S] - $16.
 * [Capacitor 4.7uF](http://www.mouser.jp/ProductDetail/Vishay-Vitramon/VJ0805V475ZXQTW1BC/?qs=sGAEpiMZZMuMW9TJLBQkXmt5SQVoUrSJNAU8zZEgNqU%3d) - $0.06
 * [Capacitor 100nF (0.1uF)](http://www.mouser.jp/ProductDetail/Vishay-Vitramon/VJ0603Y104JXQCW1BC/?Vishay-Vitramon%2fVJ0603Y104JXQCW1BC%2f&qs=sGAEpiMZZMuMW9TJLBQkXvlFzI1aRBtdrU1srwol6I4%3d) - $0.06 x 4
 * [Pin header 2.54mm 1x5](http://www.mouser.jp/ProductDetail/Amphenol-Commercial-Products/G800MR303018E0/?qs=sGAEpiMZZMs%252bGHln7q6pm41Noaw7hCiyu9cuXCdBwDY%3d) - $0.21
-* [Solder paste](http://www.aliexpress.com/wholesale?SearchText=solder+paste+xg-50)
+* [Solder paste](http://www.aliexpress.com/wholesale?SearchText=solder+paste+xg-50) - $2.49
 
 ## 5. Tools needed for assembly
 
