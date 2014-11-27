@@ -68,7 +68,7 @@ Order stencil at [Laser Cut PCB Stencil service without frame [SPS30121S] - $16.
 
 [![Let's reflow](http://img.youtube.com/vi/prjB_myCwSY/2.jpg)](http://www.youtube.com/watch?v=prjB_myCwSY)
 
-![](img/reflowprofile.png)
+![](../img/reflowprofile.png)
 
 xxx T.B.D. xxx
 
