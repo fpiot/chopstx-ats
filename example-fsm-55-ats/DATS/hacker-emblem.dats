@@ -181,11 +181,11 @@ macdef cnd0_ptr = $extval(chopstx_cond_tp, "&cnd0")
 
 extern fun led (p:ptr): ptr
 implement led (p) = the_null_ptr where {
-  fun loop (col: int): void = {
+  fun loop {n:int | 0 <= n && n <= 4} (col: int(n)): void = {
     val () = led_prepare_row (col)
     val () = led_enable_column (col)
     val () = chopstx_usec_wait (1000U)
-    val () = if col < 5 then loop (col + 1)
+    val () = if col < 4 then loop (col + 1)
   }
   fun forever (): void = (loop (0);
                           forever ())
