@@ -81,15 +81,9 @@ led_enable_column (uint8_t col)
   GPIO_LED->BRR = (1 << col);
 }
 
-static void *
-led (void *arg)
+void *
+c_led (void)
 {
-  (void)arg;
-
-  chopstx_mutex_lock (&mtx);
-  chopstx_cond_wait (&cnd0, &mtx);
-  chopstx_mutex_unlock (&mtx);
-
   while (1)
     {
       int i;
@@ -192,9 +186,8 @@ c_main (uint32_t state)
 }
 %}
 
-extern fun led (ptr): ptr = "mac#"
+extern fun c_led (): ptr = "mac#"
 extern fun c_main (state: uint): uint = "mac#"
-
 
 #define PRIO_LED 3U
 macdef __stackaddr_led = $extval(uint32, "&__process1_stack_base__")
@@ -202,6 +195,14 @@ macdef __stacksize_led = $extval(size_t, "&__process1_stack_size__")
 
 macdef mtx_ptr = $extval(chopstx_mutex_tp, "&mtx")
 macdef cnd0_ptr = $extval(chopstx_cond_tp, "&cnd0")
+
+extern fun led (p:ptr): ptr
+implement led (p) = the_null_ptr where {
+  val () = chopstx_mutex_lock (mtx_ptr)
+  val () = chopstx_cond_wait (cnd0_ptr, mtx_ptr)
+  val () = chopstx_mutex_unlock (mtx_ptr)
+  val _ = c_led ()
+}
 
 typedef l55 = @(char, char, char, char, char)
 typedef l55arr (n:int) = @[l55][n]
