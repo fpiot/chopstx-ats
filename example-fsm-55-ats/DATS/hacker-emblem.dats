@@ -62,7 +62,7 @@ set_led_display (uint32_t data)
 }
 
 
-static void
+void
 led_prepare_row (int col)
 {
   uint16_t data = 0x1f;
@@ -75,26 +75,10 @@ led_prepare_row (int col)
   GPIO_LED->ODR = data;
 }
 
-static void
+void
 led_enable_column (int col)
 {
   GPIO_LED->BRR = (1 << col);
-}
-
-void
-c_led (void)
-{
-  while (1)
-    {
-      int i;
-
-      for (i = 0; i < 5; i++)
-	{
-	  led_prepare_row (i);
-	  led_enable_column (i);
-	  chopstx_usec_wait (1000);
-	}
-    }
 }
 
 extern uint8_t __process1_stack_base__, __process1_stack_size__;
@@ -184,7 +168,8 @@ c_main (uint32_t state)
 }
 %}
 
-extern fun c_led (): void = "mac#"
+extern fun led_prepare_row (col: int): void = "mac#"
+extern fun led_enable_column (col: int): void = "mac#"
 extern fun c_main (state: uint): uint = "mac#"
 
 #define PRIO_LED 3U
@@ -196,10 +181,18 @@ macdef cnd0_ptr = $extval(chopstx_cond_tp, "&cnd0")
 
 extern fun led (p:ptr): ptr
 implement led (p) = the_null_ptr where {
-  val () = chopstx_mutex_lock (mtx_ptr)
-  val () = chopstx_cond_wait (cnd0_ptr, mtx_ptr)
-  val () = chopstx_mutex_unlock (mtx_ptr)
-  val () = c_led ()
+  fun loop (col: int): void = {
+    val () = led_prepare_row (col)
+    val () = led_enable_column (col)
+    val () = chopstx_usec_wait (1000U)
+    val () = if col < 5 then loop (col + 1)
+  }
+  fun forever (): void = (loop (0);
+                          forever ())
+  val () = (chopstx_mutex_lock (mtx_ptr);
+            chopstx_cond_wait (cnd0_ptr, mtx_ptr);
+            chopstx_mutex_unlock (mtx_ptr))
+  val () = forever ()
 }
 
 typedef l55 = @(char, char, char, char, char)
@@ -271,13 +264,14 @@ implement main () = {
     val () = forever (nstate)
   }
 
-  val () = (chopstx_mutex_init (mtx_ptr); chopstx_cond_init (cnd0_ptr))
+  val () = (chopstx_mutex_init (mtx_ptr);
+            chopstx_cond_init (cnd0_ptr))
   val _  = chopstx_create (PRIO_LED, __stackaddr_led, __stacksize_led, led, the_null_ptr)
   val () = chopstx_usec_wait (200U * 1000U)
 
-  val () = chopstx_mutex_lock (mtx_ptr)
-  val () = chopstx_cond_signal (cnd0_ptr)
-  val () = chopstx_mutex_unlock (mtx_ptr)
+  val () = (chopstx_mutex_lock (mtx_ptr);
+            chopstx_cond_signal (cnd0_ptr);
+            chopstx_mutex_unlock (mtx_ptr))
 
   val () = forever (0U)
 }
