@@ -63,7 +63,7 @@ set_led_display (uint32_t data)
 
 
 static void
-led_prepare_row (uint8_t col)
+led_prepare_row (int col)
 {
   uint16_t data = 0x1f;
 
@@ -76,12 +76,12 @@ led_prepare_row (uint8_t col)
 }
 
 static void
-led_enable_column (uint8_t col)
+led_enable_column (int col)
 {
   GPIO_LED->BRR = (1 << col);
 }
 
-void *
+void
 c_led (void)
 {
   while (1)
@@ -95,8 +95,6 @@ c_led (void)
 	  chopstx_usec_wait (1000);
 	}
     }
-
-  return NULL;
 }
 
 extern uint8_t __process1_stack_base__, __process1_stack_size__;
@@ -186,7 +184,7 @@ c_main (uint32_t state)
 }
 %}
 
-extern fun c_led (): ptr = "mac#"
+extern fun c_led (): void = "mac#"
 extern fun c_main (state: uint): uint = "mac#"
 
 #define PRIO_LED 3U
@@ -201,7 +199,7 @@ implement led (p) = the_null_ptr where {
   val () = chopstx_mutex_lock (mtx_ptr)
   val () = chopstx_cond_wait (cnd0_ptr, mtx_ptr)
   val () = chopstx_mutex_unlock (mtx_ptr)
-  val _ = c_led ()
+  val () = c_led ()
 }
 
 typedef l55 = @(char, char, char, char, char)
