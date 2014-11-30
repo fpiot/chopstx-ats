@@ -77,8 +77,6 @@ led_enable_column (int col)
   GPIO_LED->BRR = (1 << col);
 }
 
-extern uint8_t __process1_stack_base__, __process1_stack_size__;
-
 #define DATA55(x0,x1,x2,x3,x4) (x0<<20)|(x1<<15)|(x2<<10)|(x3<< 5)|(x4<< 0)
 #define SIZE55(img) (sizeof (img) / sizeof (uint32_t))
 
@@ -158,6 +156,10 @@ extern fun c_set_led_display_image0 (index: int): void = "mac#"
 extern fun c_set_led_display_image1 (index: int): void = "mac#"
 
 #define PRIO_LED 3U
+
+%{
+extern uint8_t __process1_stack_base__, __process1_stack_size__;
+%}
 macdef __stackaddr_led = $extval(uint32, "&__process1_stack_base__")
 macdef __stacksize_led = $extval(size_t, "&__process1_stack_size__")
 macdef size55_image0 = $extval(size_t, "SIZE55 (image0)")
