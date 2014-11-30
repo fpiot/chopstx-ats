@@ -40,10 +40,7 @@ struct GPIO {
 static struct GPIO *const GPIO_LED = ((struct GPIO *const) GPIO_LED_BASE);
 static struct GPIO *const GPIO_OTHER = ((struct GPIO *const) GPIO_OTHER_BASE);
 
-chopstx_mutex_t mtx;
-chopstx_cond_t cnd0;
-
-static uint8_t
+bool
 user_button (void)
 {
   return (GPIO_OTHER->IDR & 1) == 0;
@@ -60,7 +57,6 @@ set_led_display (uint32_t data)
   l_data[3] = (data >> 15) & 0x1f;
   l_data[4] = (data >> 20) & 0x1f;
 }
-
 
 void
 led_prepare_row (int col)
@@ -142,40 +138,36 @@ static uint32_t image1[] = {
   DATA55 (0x00,0x00,0x00,0x00,0x00),
 };
 
-uint32_t
-c_main (uint32_t state)
+void
+c_set_led_display_image0 (int index)
 {
-      unsigned int i;
+  set_led_display (image0[index]);
+}
 
-      if (state)
-	for (i = 0; i < SIZE55 (image0); i++)
-	  {
-	    if (user_button ())
-	      state = 0;
-	    set_led_display (image0[i]);
-	    chopstx_usec_wait (200*1000);
-	  }
-      else
-	for (i = 0; i < SIZE55 (image1); i++)
-	  {
-	    if (user_button ())
-	      state = 1;
-	    set_led_display (image1[i]);
-	    chopstx_usec_wait (200*1000);
-	  }
-
-      return state;
+void
+c_set_led_display_image1 (int index)
+{
+  set_led_display (image1[index]);
 }
 %}
 
+extern fun user_button (): bool = "mac#"
 extern fun led_prepare_row (col: int): void = "mac#"
 extern fun led_enable_column (col: int): void = "mac#"
-extern fun c_main (state: uint): uint = "mac#"
+extern fun c_set_led_display_image0 (index: int): void = "mac#"
+extern fun c_set_led_display_image1 (index: int): void = "mac#"
 
 #define PRIO_LED 3U
 macdef __stackaddr_led = $extval(uint32, "&__process1_stack_base__")
 macdef __stacksize_led = $extval(size_t, "&__process1_stack_size__")
+macdef size55_image0 = $extval(size_t, "SIZE55 (image0)")
+macdef size55_image1 = $extval(size_t, "SIZE55 (image1)")
 
+
+%{
+chopstx_mutex_t mtx;
+chopstx_cond_t cnd0;
+%}
 macdef mtx_ptr = $extval(chopstx_mutex_tp, "&mtx")
 macdef cnd0_ptr = $extval(chopstx_cond_tp, "&cnd0")
 
@@ -197,16 +189,28 @@ implement led (p) = the_null_ptr where {
   val () = forever ()
 }
 
-fun state_loop (state: uint): uint = nstate where {
-  val nstate = c_main (state)
+fun display_image0 (): void = {
+  fun loop (i: int, pressed: bool): bool = let
+      val npressed = user_button ()
+      val () = (c_set_led_display_image0 (i); chopstx_usec_wait (200U * 1000U))
+    in
+      if i+1 < $UN.cast size55_image0 then loop (i+1, pressed || npressed) else pressed || npressed
+    end
+  val () = if loop (0, false) then display_image1 () else display_image0 ()
+}
+and display_image1 (): void = {
+  fun loop (i: int, pressed: bool): bool = let
+      val npressed = user_button ()
+      val () = (c_set_led_display_image1 (i); chopstx_usec_wait (200U * 1000U))
+    in
+      if i+1 < $UN.cast size55_image1 then loop (i+1, pressed || npressed) else pressed || npressed
+    end
+  val () = if loop (0, false) then display_image0 () else display_image1 ()
 }
 
 extern fun main (): void = "mac#"
 implement main () = {
-  fun forever (state: uint): void = {
-    val nstate = state_loop (state)
-    val () = forever (nstate)
-  }
+  fun forever (): void = (display_image1 (); forever ())
 
   val () = (chopstx_mutex_init (mtx_ptr);
             chopstx_cond_init (cnd0_ptr))
@@ -217,5 +221,5 @@ implement main () = {
             chopstx_cond_signal (cnd0_ptr);
             chopstx_mutex_unlock (mtx_ptr))
 
-  val () = forever (0U)
+  val () = forever ()
 }
