@@ -31,28 +31,30 @@ T.B.D.
 
 ### Mac OS X
 
+T.B.D.
+
 1. Install [Xcode](https://developer.apple.com/xcode/).
-2. Download [ATS1 (ATS/Anairiats)](http://sourceforge.net/projects/ats-lang/files/), and build it.
-
-xxx Need to install wget.
-
-```
-$ wget http://downloads.sourceforge.net/project/ats-lang/ats-lang/anairiats-0.2.11/ats-lang-anairiats-0.2.11.tgz
-```
-
+2. Install [Homebrew](http://brew.sh/).
 3. Download [ATS2 (ATS/Postiats)](http://www.ats-lang.org/), and build it.
 
 ```
-$ git clone https://github.com/githwxi/ATS-Postiats.git
+$ brew install ats2-postiats
 ```
 
-4. Download [OpenOCD](http://openocd.sourceforge.net/), and build it.
+4. Install [OpenOCD](http://openocd.sourceforge.net/).
 
 ```
-$ git clone git://git.code.sf.net/p/openocd/code openocd
+$ brew install openocd
 ```
 
-T.B.D.
+5. Install [GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm
+-embedded).
+
+```
+$ cd /usr/local
+$ sudo tar xf ~/Downloads/gcc-arm-none-eabi-4_9-2014q4-20141203-mac.tar.bz2 
+$ export PATH=$PATH:/usr/local/gcc-arm-none-eabi-4_9-2014q4/bin
+```
 
 ## How to build
 
