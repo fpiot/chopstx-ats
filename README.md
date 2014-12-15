@@ -31,6 +31,27 @@ T.B.D.
 
 ### Mac OS X
 
+1. Install [Xcode](https://developer.apple.com/xcode/).
+2. Download [ATS1 (ATS/Anairiats)](http://sourceforge.net/projects/ats-lang/files/), and build it.
+
+xxx Need to install wget.
+
+```
+$ wget http://downloads.sourceforge.net/project/ats-lang/ats-lang/anairiats-0.2.11/ats-lang-anairiats-0.2.11.tgz
+```
+
+3. Download [ATS2 (ATS/Postiats)](http://www.ats-lang.org/), and build it.
+
+```
+$ git clone https://github.com/githwxi/ATS-Postiats.git
+```
+
+4. Download [OpenOCD](http://openocd.sourceforge.net/), and build it.
+
+```
+$ git clone git://git.code.sf.net/p/openocd/code openocd
+```
+
 T.B.D.
 
 ## How to build
