@@ -66,7 +66,7 @@ Order stencil at [Laser Cut PCB Stencil service without frame [SPS30121S] - $16.
 
 ## 6. Assembly ([Reflow soldering](http://en.wikipedia.org/wiki/Reflow_soldering))
 
-[![Let's reflow](http://img.youtube.com/vi/prjB_myCwSY/2.jpg)](http://www.youtube.com/watch?v=prjB_myCwSY)
+[![Let's reflow](http://share.gifyoutube.com/yD0W7G.gif)](http://www.youtube.com/watch?v=prjB_myCwSY)
 
 ![](../img/reflowprofile.png)
 
